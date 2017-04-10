@@ -17,24 +17,40 @@ div.header {
 
 div.list {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 div.list-element {
-    border: 2px solid black;
-    margin: 10px 0px 10px 0px;
-
+    width: 200px;
+    border: 1px solid black;
+    margin: 10px 5px 10px 5px;
     display: flex;
 }
 
-div.list-element img {
-    flex-direction: row;
+div.list-element div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+div.list-element div img {
 }
 
 div.list-element ul {
-    flex-direction: row;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 div.menu {
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+div.menu a {
+    margin: 0px 5px 0px 5px;
 }
