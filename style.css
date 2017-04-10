@@ -1,0 +1,36 @@
+body {
+    width: 50%;    
+    margin: 0 auto;
+}
+
+div.header {
+    height: 100px;
+    text-align: center;
+    font-size: 100px;
+    color: orange;
+    margin-bottom: 20px;
+}
+
+div.list {
+    display: flex;
+    flex-direction: column;
+}
+
+div.list-element {
+    border: 2px solid black;
+    margin: 10px;
+
+    display: flex;
+}
+
+div.list-element img {
+    flex-direction: row;
+}
+
+div.list-element ul {
+    flex-direction: row;
+}
+
+div.menu {
+    background-color: black;
+}
