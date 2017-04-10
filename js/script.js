@@ -1,4 +1,4 @@
-[
+var poke = [
 {
   "id": 1,
   "name": "Bulbasaur",
@@ -29,4 +29,40 @@
   "type": [ "grass" ],
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/152.png"
 },
-]
+];
+
+console.log(poke);
+console.log("HELLO");
+
+poke.forEach(function(p) {
+	var main = document.createElement('div');
+	
+	main.setAttribute('class','list-element');
+	main.setAttribute('id', p.id);
+	
+	var sub = document.createElement('div');
+	main.appendChild(sub);
+	
+	var img = document.createElement('img');
+	img.setAttribute('src', p.sprite);
+	sub.appendChild(img);
+	
+	document.getElementById('list').appendChild(main);
+
+	var spn = document.createElement('span');
+	spn.textContent = p.name;
+	sub.appendChild(spn);
+	
+	var ul = document.createElement('ul');
+	p.type.forEach(function(s) {
+		var li = document.createElement('li');
+		li.textContent = s;
+		ul.appendChild(li);
+	})
+	
+	main.appendChild(ul);
+	
+});	
+
+
+
