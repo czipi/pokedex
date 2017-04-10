@@ -1,4 +1,4 @@
-Pokéapi projekt
+# Pokéapi projekt
 
-# 1 javascript
-# 2 adatletöltés
+1 javascript
+2 adatletöltés
