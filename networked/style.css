@@ -1,0 +1,58 @@
+body div.main {
+    width: 50%;    
+    margin: 0 auto;
+    display: none;
+}
+
+body div.loadingScreen {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+div.loadingScreen h1 {
+    color: black;
+}
+
+div.header {
+    height: 100px;
+    text-align: center;
+    font-size: 100px;
+    color: orange;
+    margin-bottom: 20px;
+}
+
+div.list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+div.list-element {
+    margin: 10px 5px 10px 5px;
+    display: flex;
+}
+
+div.list-element div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+div.list-element ul {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+div.menu {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+div.menu a {
+    margin: 0px 5px 0px 5px;
+}
