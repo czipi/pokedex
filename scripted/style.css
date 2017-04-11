@@ -1,0 +1,56 @@
+body {
+}
+
+body > div {
+    width: 50%;    
+    margin: 0 auto;
+    padding-top: 70px;
+}
+
+div.header {
+    height: 100px;
+    text-align: center;
+    font-size: 100px;
+    color: orange;
+    margin-bottom: 20px;
+}
+
+div.list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+div.list-element {
+    width: 200px;
+    border: 1px solid black;
+    margin: 10px 5px 10px 5px;
+    display: flex;
+}
+
+div.list-element div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+div.list-element div img {
+}
+
+div.list-element ul {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+div.menu {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+div.menu a {
+    margin: 0px 5px 0px 5px;
+}

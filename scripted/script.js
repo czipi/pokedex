@@ -31,9 +31,6 @@ var poke = [
 },
 ];
 
-console.log(poke);
-console.log("HELLO");
-
 poke.forEach(function(p) {
 	var main = document.createElement('div');
 	
