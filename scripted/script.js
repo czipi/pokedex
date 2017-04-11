@@ -2,7 +2,7 @@ var poke = [
 {
   "id": 1,
   "name": "Bulbasaur",
-  "type": [ "grass", "posion" ],
+  "type": [ "grass", "poison" ],
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
 },
 {
@@ -14,7 +14,7 @@ var poke = [
 {
   "id": 15,
   "name": "Beedrill",
-  "type": [ "bug", "posion" ],
+  "type": [ "bug", "poison" ],
   "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png"
 },
 {
@@ -31,12 +31,28 @@ var poke = [
 },
 ];
 
+var colors = {
+  grass: "rgb(120, 200, 80)",
+  poison: "rgb(160, 64, 160)",
+  fire: "rgb(240, 128, 48)",
+  bug: "rgb(168, 184, 32)",
+  flying: "rgb(168, 144, 240)"
+};
+
 poke.forEach(function(p) {
 	var main = document.createElement('div');
 	
 	main.setAttribute('class','list-element');
 	main.setAttribute('id', p.id);
 	
+  if (p.type.length == 1) {
+    console.log("1");
+    main.style.background = colors[p.type[0]];
+  } else if (p.type.length == 2) {
+    console.log("2");
+    main.style.background = "linear-gradient(90deg, "+colors[p.type[0]]+" 50%, "+colors[p.type[1]]+" 50%)";
+  }
+
 	var sub = document.createElement('div');
 	main.appendChild(sub);
 	
@@ -51,6 +67,7 @@ poke.forEach(function(p) {
 	sub.appendChild(spn);
 	
 	var ul = document.createElement('ul');
+
 	p.type.forEach(function(s) {
 		var li = document.createElement('li');
 		li.textContent = s;
