@@ -50,7 +50,7 @@ div.list-element div {
     border-radius:3px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
-    box-shadow: 5px 5px 5px orange;
+    box-shadow: 3px 3px 3px orange;
 }
 
 div.list-element ul {
