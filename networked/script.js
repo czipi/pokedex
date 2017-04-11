@@ -39,10 +39,9 @@ function addPokemons(pokemons) {
   document.getElementById('pokemons').style.display = "block";
 }
 
-fetchPokemons('http://pokeapi.co/api/v2/pokemon/?limit=150');
+fetchPokemons('https://pokeapi.co/api/v2/pokemon/?limit=150');
 
-function fetchPokemonsWithDetails() {
-  var url = 'http://pokeapi.co/api/v2/pokemon/?limit=20';
+function fetchPokemonsWithDetails(url) {
   var promise = fetch(url).then(
     function(response) {
       return response.json();
