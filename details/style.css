@@ -153,8 +153,7 @@ img.poke-img {
 
 .poke-stat-wrapper {
   width: 200px;
-}
-
-.poke-stat-label {
-    width: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
