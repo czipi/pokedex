@@ -16,13 +16,31 @@
                 POKEDEX
             </div>
 
-            <!--div id="menu" class="menu">
-                <a href="#">Menu1</a>
-                <a href="#">Menu2</a>
-                <a href="#">Menu3</a>
-            </div-->
             <input id="search" class="search" type="text" placeholder="Search pokemons..">
             <div id="list" class="list"></div>
-        <script src= "script.js">      </script>
+        </div>
+
+        <div id="details-wrapper" class="details-wrapper">
+            <div id="details" class="details">
+                <span id="poke-name" class="poke-name">Balbasaur</span>
+                <div id="poke-stat" class="poke-stat">
+                    <img id="poke-img" class="poke-img" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other-sprites/official-artwork/1.png"></img>
+                    <div id="poke-stats-wrapper" class="poke-stats-wrapper">
+                        <div class="poke-stat-wrapper"><span class="poke-stat-label">HP</span><span id="poke-stat-hp" class="poke-stat"></span></div>
+                        <div class="poke-stat-wrapper"><span class="poke-stat-label">Attack</span><span id="poke-stat-attack" class="poke-stat"></span></div>
+                        <div class="poke-stat-wrapper"><span class="poke-stat-label">Defense</span><span id="poke-stat-defense" class="poke-stat"></span></div>
+                        <div class="poke-stat-wrapper"><span class="poke-stat-label">Speed</span><span id="poke-stat-speed" class="poke-stat"></span></div>
+                        <div class="poke-stat-wrapper"><span class="poke-stat-label">Sp Atk</span><span id="poke-stat-spatk" class="poke-stat"></span></div>
+                        <div class="poke-stat-wrapper"><span class="poke-stat-label">Sp Def</span><span id="poke-stat-spdef" class="poke-stat"></span></div>
+                    </div>
+                </div>
+                <div id="poke-desc" class="poke-desc">
+                  trutymák
+                </div>
+                <div id="poke-info-wrapper">
+                </div>
+            </div>
+        </div>
+        <script src= "script.js"></script>
     </body>
 </html>

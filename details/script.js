@@ -10,7 +10,7 @@ function fetchPokemons (url) {
 function addPokemons(pokemons) {
   pokemons.forEach(function(pokemon){
     var main = document.createElement('div');
-    main.setAttribute('class','list-element');
+    main.setAttribute('class', 'list-element');
     main.setAttribute('id', pokemon.name);
 
     var sub = document.createElement('div');
@@ -22,6 +22,7 @@ function addPokemons(pokemons) {
     img.setAttribute('src', imgUrl.replace("%id", id));
     sub.appendChild(img);
     
+    // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other-sprites/official-artwork/1.png
     document.getElementById('list').appendChild(main);
 
     var spn = document.createElement('span');
@@ -39,7 +40,7 @@ function addPokemons(pokemons) {
   document.getElementById('pokemons').style.flexDirection = "column";
 }
 
-fetchPokemons('https://pokeapi.co/api/v2/pokemon/?limit=150');
+fetchTypes("https://raw.githubusercontent.com/flaki/pokedex/master/poketypes.json");
 
 document.getElementById("search").addEventListener("input", function(){
   var filterValue = this.value.toLowerCase();
@@ -57,6 +58,20 @@ document.getElementById("search").addEventListener("input", function(){
 });
 
 
+function fetchTypes(url) {  
+  fetch(url).then(
+    function(response) {
+      return response.json();
+    }).then(function(types){
+      addTypes(types);
+    });
+}
+
+function addTypes(types) {
+  pokemonTypes = types;
+  console.log(pokemonTypes);
+  fetchPokemons('https://pokeapi.co/api/v2/pokemon/?limit=150');
+}
 
 function fetchPokemonsWithDetails(url) {
   var promise = fetch(url).then(
@@ -116,6 +131,28 @@ function fetchPokemonsWithDetails(url) {
   });
 };
 
+var typeColors = {
+  normal: "A8A77A",
+  fire: "EE8130",
+  water: "6390F0",
+  electric: "F7D02C",
+  grass: "7AC74C",
+  ice: "96D9D6",
+  fighting: "C22E28",
+  poison: "A33EA1",
+  ground: "E2BF65",
+  flying: "A98FF3",
+  psychic: "F95587",
+  bug: "A6B91A",
+  rock: "B6A136",
+  ghost: "735797",
+  dragon: "6F35FC",
+  dark: "705746",
+  steel: "B7B7CE",
+  fairy: "D685AD"
+}
+
+var pokemonTypes = {};
 
 /*
 poke.forEach(function(p) {
