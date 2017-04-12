@@ -99,9 +99,20 @@ function fetchPokemonDetails(pokeName) {
 	fetch(poke.url).then(function(response) {		  
 	      return response.json();
 	    }).then(function(pokemonDetails){
-	    	console.log(pokemonDetails.stats);
-	    	//loadPokeDetails(pokemonDetails);
+	    	console.log(pokemonDetails);
+	    	loadPokeDetails(pokemonDetails);
 	    });
+}
+
+function loadPokeDetails(pokemonDetails){
+	document.getElementById('poke-name').innerHTML = pokemonDetails.name;
+	document.getElementById('poke-img').setAttribute('src', pokemonDetails.sprites.front_default);
+	document.getElementById('poke-stat-hp').innerHTML = pokemonDetails.stats[5].base_stat;	
+	document.getElementById('poke-stat-attack').innerHTML = pokemonDetails.stats[4].base_stat;	
+	document.getElementById('poke-stat-defense').innerHTML = pokemonDetails.stats[3].base_stat;
+	document.getElementById('poke-stat-speed').innerHTML = pokemonDetails.stats[0].base_stat;
+	document.getElementById('poke-stat-spatk').innerHTML = pokemonDetails.stats[2].base_stat;
+	document.getElementById('poke-stat-spdef').innerHTML = pokemonDetails.stats[1].base_stat;
 }
 
 function fetchTypes(url) {  
