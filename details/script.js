@@ -11,7 +11,7 @@ function fetchPokemons (url) {
 
 function addPokemons(pokemons) {	
 	  pokemons.forEach(function(pokemon){	  
-		pokeList.push(pokemon); // lista elmentése	
+		  pokeList.push(pokemon); // lista elmentése	
 	    var main = document.createElement('div');
 	    main.setAttribute('class','list-element');
 	    main.setAttribute('id', pokemon.name);
@@ -22,6 +22,9 @@ function addPokemons(pokemons) {
 	    	} else { // ha a spanra kattintottunk    		
 	    		fetchPokemonDetails(e.target.innerHTML.toLowerCase());
 	    	}    	
+
+        document.getElementById("pokemons").style.display='none';
+        document.getElementById("details-wrapper").style.display='flex';
 	    });
 
 	    var sub = document.createElement('div');
@@ -30,9 +33,20 @@ function addPokemons(pokemons) {
 	    var img = document.createElement('img');
 	    var id = pokemon.url.match(/\/(\d+)\/$/)[1];
 	    var imgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/%id.png";
+      // main.style.backgroundImage = "url('"+imgUrl.replace("%id", id)+"')";
+      // console.log("url("+imgUrl.replace("%id", id)+")");
 	    img.setAttribute('src', imgUrl.replace("%id", id));
 	    sub.appendChild(img);
 	    
+      var types = pokemonTypes[pokemon.name];
+
+      if (types.length == 1) {
+        main.style.background = "#" + typeColors[types[0]] + " " + "url('"+imgUrl.replace("%id", id)+"')";
+        console.log("1 " + "#" + typeColors[types[0]]);
+      } else if (types.length == 2) {
+        main.style.background = "linear-gradient(90deg, #"+typeColors[types[0]]+" 50%, #"+typeColors[types[1]]+" 50%)";
+      }
+
 	    document.getElementById('list').appendChild(main);
 
 	    var spn = document.createElement('span');
@@ -53,6 +67,13 @@ function addPokemons(pokemons) {
 	}
 
 fetchTypes("https://raw.githubusercontent.com/flaki/pokedex/master/poketypes.json");
+
+document.getElementById("details-wrapper").addEventListener("click", function(e){
+    if (e.target === this) {
+      this.style.display = "none";
+      document.getElementById('pokemons').style.display = "flex";
+    }
+});
 
 document.getElementById("search").addEventListener("input", function(){
   var filterValue = this.value.toLowerCase();
