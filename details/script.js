@@ -58,9 +58,6 @@ function addPokemons(pokemons) {
 	    spn.textContent = name;
 
 	    sub.appendChild(spn);
-	    
-	    //var ul = document.createElement('ul');
-	    //main.appendChild(ul);
 	  });
 
 	  console.log(pokeList);
@@ -79,20 +76,66 @@ document.getElementById("details-wrapper").addEventListener("click", function(e)
     }
 });
 
+document.getElementById("filter").addEventListener("change", function(){
+  var searchValue = document.getElementById("search").value.toLowerCase();
+  var typeValue = this.value.toLowerCase();
+
+  searchPokemons(typeValue, searchValue);
+});
+
 document.getElementById("search").addEventListener("input", function(){
-  var filterValue = this.value.toLowerCase();
+  var searchValue = this.value.toLowerCase();
+  var typeValue = document.getElementById("filter").value.toLowerCase();
+
+  searchPokemons(typeValue, searchValue);
+});
+
+function searchPokemons(type, name) {
   var pokemons = document.getElementById("list").childNodes;
+
+  console.log("search " + type + " " + name);
+
+  if (type == "" && name == "") {
+
+    pokemons.forEach(function(p){
+      p.style.display = "block";
+    });
+
+    return;
+  }
+
+  var validPokemons = [];
+
+  pokemons.forEach(function(p){
+    validPokemons.push(p.id);
+  });
+
+  if (type != "") {
+    validPokemons = pokeGroups[type];
+  }
+
+  if (name != "")
+  {
+    var result = [];
+
+    for (var i = 0; validPokemons != null && i < validPokemons.length; i++) {
+      if ((validPokemons[i].toLowerCase().startsWith(name.toLowerCase()))) {
+        result.push(validPokemons[i]);
+      }
+    }
+
+    validPokemons = result;
+  }
 
   pokemons.forEach(function(p){
     var name = p.id;
-
-    if (name.startsWith(filterValue)) {
+    if (validPokemons != null && validPokemons.indexOf(name) != -1) {
       p.style.display = "block";
     } else {
       p.style.display = "none";
     }
   });
-});
+}
 
 function fetchPokemonDetails(pokeName) {
 	console.log('kiválasztott poke neve:' + pokeName);
@@ -162,68 +205,16 @@ function transformTypesToGroups() {
 		    });
 		}
 	}
+
+  var select = document.getElementById("filter");
+  for (var type in pokeGroups) {
+    var option = document.createElement("option");
+    option.value = type;
+    option.innerHTML = type + " type";
+    select.appendChild(option);
+  }
 	console.log(pokeGroups);
 }
-
-/*
-function fetchPokemonsWithDetails(url) {
-  var promise = fetch(url).then(
-    function(response) {
-      return response.json();
-    }).then(function(pokemons){
-      pokemons.results.forEach(function(pokemon) {
-        var pokePremise = fetch(pokemon.url).then(
-          function(detailResponse){
-            return detailResponse.json();
-          }).then(function(pokemonDetails){
-
-            var main = document.createElement('div');
-        
-            main.setAttribute('class','list-element');
-            main.setAttribute('id', pokemonDetails.name);
-
-            /*
-            if (p.type.length == 1) {
-              console.log("1");
-              main.style.background = colors[p.type[0]];
-            } else if (p.type.length == 2) {
-              console.log("2");
-              main.style.background = "linear-gradient(90deg, "+colors[p.type[0]]+" 50%, "+colors[p.type[1]]+" 50%)";
-            }*/
-/*
-            var sub = document.createElement('div');
-            main.appendChild(sub);
-            
-            var img = document.createElement('img');
-            img.setAttribute('src', pokemonDetails.sprites.front_default);
-            sub.appendChild(img);
-            
-            document.getElementById('list').appendChild(main);
-
-            var spn = document.createElement('span');
-            spn.textContent = pokemonDetails.name;
-            sub.appendChild(spn);
-            
-            var ul = document.createElement('ul');
-
-            /*
-            p.type.forEach(function(s) {
-              var li = document.createElement('li');
-              li.textContent = s;
-              ul.appendChild(li);
-            })
-            */
-/*
-            main.appendChild(ul);
-          });        
-      });	
-      
-      document.getElementById('loadingScreen').style.display = "none";
-
-      return pokemons;
-  });
-};
-*/
 
 var typeColors = {
   normal: "A8A77A",
