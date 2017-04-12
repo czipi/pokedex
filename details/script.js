@@ -23,8 +23,8 @@ function addPokemons(pokemons) {
 	    		fetchPokemonDetails(e.target.innerHTML.toLowerCase());
 	    	}    	
 
-        document.getElementById("pokemons").style.display='none';
-        document.getElementById("details-wrapper").style.display='flex';
+        document.getElementById('loadingScreen').style.display = "block";
+        document.getElementById('pokemons').style.display = "none";
 	    });
 
 	    var sub = document.createElement('div');
@@ -41,7 +41,7 @@ function addPokemons(pokemons) {
       var types = pokemonTypes[pokemon.name];
 
       if (types.length == 1) {
-        main.style.background = "#" + typeColors[types[0]] + " " + "url('"+imgUrl.replace("%id", id)+"')";
+        main.style.background = "#" + typeColors[types[0]];
         console.log("1 " + "#" + typeColors[types[0]]);
       } else if (types.length == 2) {
         main.style.background = "linear-gradient(90deg, #"+typeColors[types[0]]+" 50%, #"+typeColors[types[1]]+" 50%)";
@@ -50,6 +50,8 @@ function addPokemons(pokemons) {
 	    document.getElementById('list').appendChild(main);
 
 	    var spn = document.createElement('span');
+      spn.style.opacity = '0.5';
+      spn.style.backgroundColor = 'white';
 	    var name = pokemon.name.substring(0, 1).toUpperCase() + pokemon.name.substring(1, pokemon.name.length) ;
 	    spn.textContent = name;
 
@@ -105,7 +107,17 @@ function fetchPokemonDetails(pokeName) {
 }
 
 function loadPokeDetails(pokemonDetails){
-	document.getElementById('poke-name').innerHTML = pokemonDetails.name;
+    var types = pokemonTypes[pokemonDetails.name];
+
+    if (types.length == 1) {
+      document.getElementById("details-wrapper").style.background = "#" + typeColors[types[0]];;
+    } else if (types.length == 2) {
+      document.getElementById("details-wrapper").style.background = "linear-gradient(90deg, #"+typeColors[types[0]]+" 50%, #"+typeColors[types[1]]+" 50%)";
+    }
+
+  var name = pokemonDetails.name.substring(0, 1).toUpperCase() + pokemonDetails.name.substring(1, pokemonDetails.name.length);
+
+	document.getElementById('poke-name').innerHTML = name;
 	document.getElementById('poke-img').setAttribute('src', pokemonDetails.sprites.front_default);
 	document.getElementById('poke-stat-hp').innerHTML = pokemonDetails.stats[5].base_stat;	
 	document.getElementById('poke-stat-attack').innerHTML = pokemonDetails.stats[4].base_stat;	
@@ -113,6 +125,9 @@ function loadPokeDetails(pokemonDetails){
 	document.getElementById('poke-stat-speed').innerHTML = pokemonDetails.stats[0].base_stat;
 	document.getElementById('poke-stat-spatk').innerHTML = pokemonDetails.stats[2].base_stat;
 	document.getElementById('poke-stat-spdef').innerHTML = pokemonDetails.stats[1].base_stat;
+
+  document.getElementById('loadingScreen').style.display = "none";
+  document.getElementById("details-wrapper").style.display='flex';
 }
 
 function fetchTypes(url) {  
@@ -126,7 +141,9 @@ function fetchTypes(url) {
 
 function addTypes(types) {
   pokemonTypes = types;
-  console.log(pokemonTypes);
+
+
+
   fetchPokemons('https://pokeapi.co/api/v2/pokemon/?limit=150');
 }
 
