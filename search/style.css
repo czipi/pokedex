@@ -35,6 +35,10 @@ div.list-element {
     display: flex;
 }
 
+div.list-element:hover {
+    opacity: 0.5;
+}
+
 div.list-element div {
     display: flex;
     flex-direction: column;
