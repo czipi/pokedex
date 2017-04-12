@@ -1,3 +1,5 @@
+var pokeList = [];
+
 function fetchPokemons (url) {
   fetch(url).then(
     function(response) {
@@ -7,38 +9,48 @@ function fetchPokemons (url) {
     });
 };
 
-function addPokemons(pokemons) {
-  pokemons.forEach(function(pokemon){
-    var main = document.createElement('div');
-    main.setAttribute('class', 'list-element');
-    main.setAttribute('id', pokemon.name);
+function addPokemons(pokemons) {	
+	  pokemons.forEach(function(pokemon){	  
+		pokeList.push(pokemon); // lista elmentése	
+	    var main = document.createElement('div');
+	    main.setAttribute('class','list-element');
+	    main.setAttribute('id', pokemon.name);
+	    // onclick event -> fetch details
+	    main.addEventListener('click', function(e) {    	
+	    	if(e.target.nodeName == "IMG") { // ha a képre kattintottunk    		
+	    		fetchPokemonDetails(e.target.parentElement.childNodes[1].innerHTML.toLowerCase());
+	    	} else { // ha a spanra kattintottunk    		
+	    		fetchPokemonDetails(e.target.innerHTML.toLowerCase());
+	    	}    	
+	    });
 
-    var sub = document.createElement('div');
-    main.appendChild(sub);
-    
-    var img = document.createElement('img');
-    var id = pokemon.url.match(/\/(\d+)\/$/)[1];
-    var imgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/%id.png";
-    img.setAttribute('src', imgUrl.replace("%id", id));
-    sub.appendChild(img);
-    
-    // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other-sprites/official-artwork/1.png
-    document.getElementById('list').appendChild(main);
+	    var sub = document.createElement('div');
+	    main.appendChild(sub);
+	    
+	    var img = document.createElement('img');
+	    var id = pokemon.url.match(/\/(\d+)\/$/)[1];
+	    var imgUrl = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/%id.png";
+	    img.setAttribute('src', imgUrl.replace("%id", id));
+	    sub.appendChild(img);
+	    
+	    document.getElementById('list').appendChild(main);
 
-    var spn = document.createElement('span');
-    var name = pokemon.name.substring(0, 1).toUpperCase() + pokemon.name.substring(1, pokemon.name.length) ;
-    spn.textContent = name;
+	    var spn = document.createElement('span');
+	    var name = pokemon.name.substring(0, 1).toUpperCase() + pokemon.name.substring(1, pokemon.name.length) ;
+	    spn.textContent = name;
 
-    sub.appendChild(spn);
-    
-    //var ul = document.createElement('ul');
-    //main.appendChild(ul);
-  });
+	    sub.appendChild(spn);
+	    
+	    //var ul = document.createElement('ul');
+	    //main.appendChild(ul);
+	  });
 
-  document.getElementById('loadingScreen').style.display = "none";
-  document.getElementById('pokemons').style.display = "flex";
-  document.getElementById('pokemons').style.flexDirection = "column";
-}
+	  console.log(pokeList);
+	  
+	  document.getElementById('loadingScreen').style.display = "none";
+	  document.getElementById('pokemons').style.display = "flex";
+	  document.getElementById('pokemons').style.flexDirection = "column";
+	}
 
 fetchTypes("https://raw.githubusercontent.com/flaki/pokedex/master/poketypes.json");
 
@@ -57,6 +69,19 @@ document.getElementById("search").addEventListener("input", function(){
   });
 });
 
+function fetchPokemonDetails(pokeName) {
+	console.log('kiválasztott poke neve:' + pokeName);
+	var poke = pokeList.find(function(poke){
+		return (poke.name == pokeName);
+	});
+	console.log(poke);
+	fetch(poke.url).then(function(response) {		  
+	      return response.json();
+	    }).then(function(pokemonDetails){
+	    	console.log(pokemonDetails.stats);
+	    	//loadPokeDetails(pokemonDetails);
+	    });
+}
 
 function fetchTypes(url) {  
   fetch(url).then(
