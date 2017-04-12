@@ -25,7 +25,7 @@ function addPokemons(pokemons) {
 	    		fetchPokemonDetails(e.target.innerHTML.toLowerCase());
 	    	}    	
 
-        document.getElementById('loadingScreen').style.display = "block";
+        document.getElementById('loadingScreen').style.display = "flex";
         document.getElementById('pokemons').style.display = "none";
 	    });
 
@@ -137,6 +137,8 @@ function searchPokemons(type, name) {
   });
 }
 
+
+var pokemonDetails = {};
 function fetchPokemonDetails(pokeName) {
 	console.log('kiválasztott poke neve:' + pokeName);
 	var poke = pokeList.find(function(poke){
