@@ -6,8 +6,8 @@ body {
 }
 
 body div.main {
-    min-width: 40%;    
-    max-width: 60%;   
+    min-width: 40%;
+    max-width: 60%;
     margin: 0 auto;
     display: none;
     justify-content: center;
@@ -132,7 +132,7 @@ img.poke-img {
 
 .poke-stat-wrapper {
     width: 200px;
-    display: flex;  
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
