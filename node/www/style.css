@@ -1,0 +1,184 @@
+body {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin: 0 auto;
+}
+
+body div.main {
+    min-width: 40%;
+    max-width: 60%;
+    margin: 0 auto;
+    display: none;
+    justify-content: center;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+body div.loadingScreen {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+div.header {
+    height: 100px;
+    text-align: center;
+    font-size: 100px;
+    color: orange;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+div.list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+div.list-element {
+    margin: 10px 5px 10px 5px;
+    display: flex;
+}
+
+div.list-element:hover {
+    opacity: 0.5;
+}
+
+div.list-element div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    border-width:1px;
+    border-style:solid;
+    border-bottom-color:#ffdd55;
+    border-right-color:#ffdd55;
+    border-top-color:#ffeeaa;
+    border-left-color:#ffeeaa;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    box-shadow: 3px 3px 3px orange;
+}
+
+div.list-element ul {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+div.menu {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+div.menu a {
+    margin: 0px 5px 0px 5px;
+}
+
+
+input.search:focus {
+    outline-width: 0;
+}
+
+div.details-wrapper {
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    align-content: center;
+    background: orange;
+}
+
+div.details {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    top: 100px;
+    width: 500px;
+    opacity: 0.7;
+    background: white;
+}
+
+div.poke-stats-wrapper {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+div.poke-stat {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+span.poke-name {
+    text-align: center;
+    background: grey;
+    height: 40px;
+    vertical-align: middle;
+    font-size: 2em;
+}
+
+img.poke-img {
+    width: 150px;
+    height: 150px;
+}
+
+.poke-stat-wrapper {
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.filter {
+    width: 200px;
+    border:0px;
+    border-bottom: 2px solid #ff9900;
+    outline:0px;
+    margin: 0px 0px 0px 20px ;
+}
+
+.poke-desc {
+    margin-top: 20px;
+}
+
+input.search {
+    width: 200px;
+    height: 10px;
+    display: block;
+    margin: 0px 20px 0px 0px;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    padding: 10px 20px;
+    border: 0 solid #b7b7b7;
+    border-bottom: 2px solid #ff9900;
+    font: normal 16px/normal "Times New Roman", Times, serif;
+    color: rgba(255,153,0,1);
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.66) ;
+    -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+}
